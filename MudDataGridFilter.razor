@@ -1,0 +1,19 @@
+﻿<h3>MudDataGridFilter</h3>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            var filterDefinition = new FilterDefinition<OpenTicket>
+                {
+                    Column = _dataGrid!.RenderedColumns.ElementAt(13),
+                    Title = "Support Group",
+                    Operator = "contains",
+                    Value = ("OCIO Active Directory || OCIO Network Support")    
+                };
+            await _dataGrid!.AddFilterAsync(filterDefinition);
+        }
+    }
+}
